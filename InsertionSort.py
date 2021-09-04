@@ -17,3 +17,18 @@ def insertion_sort(input, length):
         input[j]=a 
     return input;
 
+x=[]
+length=1000000
+for i in range(0,length):
+    x=x+[random.randint(0, length)]
+print(x)
+
+print("Tiempo inicio:")
+print(datetime.now())
+
+x=insertion_sort(x,length)
+
+print("Tiempo final:")
+print(datetime.now())
+
+print(x)

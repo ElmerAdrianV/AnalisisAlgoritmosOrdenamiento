@@ -21,7 +21,8 @@ def get_time(sortAlgorithm, unorderedlist):
     start=datetime.now()
     sortAlgorithm(unorderedlist)
     end=datetime.now()
-    return (end.minute-start.minute)*60+(end.second-start.second)+(end.microsecond-start.microsecond)/1000000 
+    return (end.minute-start.minute)*60 +(end.second-start.second) +(end.microsecond-start.microsecond)/1000000
+
 
 # obtiene un string de 4 caracteres al azar
 def get_random_string4():
@@ -34,34 +35,32 @@ timesExpIS=[]
 ##timesExpSS=[]
 ##timesExpMSR=[]
 ##timesExpMSI=[]
-length=16
-for j in range(0,8):
-    x=[]
+x=[]
+for j in range(0,9):
+    x.clear()
+    length=2^(4+j) # [16,4098]
     for i in range(0,length):
         x.append(get_random_string4())
-    length*=2
+    
+    
+    #for i in range(0,10):
     unorderedListIS=x.copy()   # copia para el insertion sort
     # unorderedListSS=x.copy()  # copia para el selection sort
     # unorderedListMSR=x.copy() # copia para el merge sort recursivo
     # unorderedListMSI=x.copy() # copia para el merge sort iterativo
-    
-    for i in range(0,10):
-        timesExpIS.append(get_time(insertion_sort, unorderedListIS))
+    timesExpIS.append(get_time(insertion_sort, unorderedListIS))
         # timesExpSS.append(get_time(selection_sort, unorderedListSS))
         # timesExpMSR.append(get_time(merge_sort_recursivo, unorderedListMSR))
         # timesExpMSI.append(get_time(merge_sort_iterativo, unorderedListMSI))
-        
-        unorderedListIS=x.copy()   # copia para el insertion sort
-        # unorderedListSS=x.copy()  # copia para el selection sort
-        # unorderedListMSR=x.copy() # copia para el merge sort recursivo
-        # unorderedListMSI=x.copy() # copia para el merge sort iterativo
 
+print(timesExpIS)
 timesIS=[]
 ##timesSS=[]
 ##timesMSR=[]
 ##timesMSI=[]
-for j in range(1,9):
-    x=[]
+x=[]
+for j in range(1,11):
+    x.clear()
     length=100*j
     for i in range(0,length):
         x.append(get_random_string4())
@@ -81,10 +80,14 @@ for j in range(1,9):
         # unorderedListSS=x.copy()  # copia para el selection sort
         # unorderedListMSR=x.copy() # copia para el merge sort recursivo
         # unorderedListMSI=x.copy() # copia para el merge sort iterativo
+
+
+
+
 '''
 x=[]
-for i in range(0,200):
-    x=x+[200-i]
+for i in range(0,4098):
+    x=x+[4098-i]
 print(get_time(insertion_sort, x)) 
 
 for i in range(0,length):

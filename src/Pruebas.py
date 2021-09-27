@@ -133,7 +133,7 @@ def get_random_string4():
     randomString=''.join(random.choice(string.ascii_lowercase) for i in range(4))
     return randomString
 
-def pruebasString(sort,tipo, potencia): #(insertionSort, BC,1)
+def pruebas_string(sort,tipo, potencia): #(insertionSort, BC,1)
     tiempos=[]
     for j in range(1,11):
         if(potencia==1):
@@ -141,14 +141,14 @@ def pruebasString(sort,tipo, potencia): #(insertionSort, BC,1)
         else:
             length=100*j #[100-1000]
         lista=[]
-        generaLista(lista,tipo, length)
+        genera_lista_string(lista,tipo, length)
         for i in range(0,10):
             listaDesordenada=lista.copy()   # copia para el ordenar
             tiempos.append(get_time(sort, listaDesordenada))
         lista.clear()
     return tiempos
 
-def generaLista(lista,tipo, length):
+def genera_lista_string(lista,tipo, length):
     for i in range(length):
         lista.append( get_random_string4() )
     if(tipo!='AV'):
@@ -156,64 +156,146 @@ def generaLista(lista,tipo, length):
         if(tipo!='BC'):
             lista.reverse()
 
+def pruebas_int(sort,tipo, potencia): #(insertionSort, BC,1)
+    tiempos=[]
+    for j in range(1,11):
+        if(potencia==1):
+            length=2**(3+j) # [16,8096]
+        else:
+            length=100*j #[100-1000]
+        lista=[]
+        genera_lista_int(lista,tipo, length)
+        for i in range(0,10):
+            listaDesordenada=lista.copy()   # copia para el ordenar
+            tiempos.append(get_time(sort, listaDesordenada))
+        lista.clear()
+    return tiempos
+
+def genera_lista_int(lista,tipo, length):
+    for i in range(length):
+        lista.append( random.randint(0, length) )
+    if(tipo!='AV'):
+        lista.sort()
+        if(tipo!='BC'):
+            lista.reverse()
 #---------CUIDADO: ZONA DE PRUEBAS CON STRING-------------#
 """
-tiempos=pruebasString(insertion_sort, 'AV', 1)
+tiempos=pruebas_string(insertion_sort, 'AV', 1)
 print(tiempos)
-tiempos=pruebasString(insertion_sort, 'BC', 1)
+tiempos=pruebas_string(insertion_sort, 'BC', 1)
 print(tiempos)
-tiempos=pruebasString(insertion_sort, 'WC', 1)
+tiempos=pruebas_string(insertion_sort, 'WC', 1)
 print(tiempos)       
 
 
-tiempos=pruebasString(insertion_sort, 'AV', 0)
+tiempos=pruebas_string(insertion_sort, 'AV', 0)
 print(tiempos)
-tiempos=pruebasString(insertion_sort, 'BC', 0)
+tiempos=pruebas_string(insertion_sort, 'BC', 0)
 print(tiempos)
-tiempos=pruebasString(insertion_sort, 'WC', 0)
+tiempos=pruebas_string(insertion_sort, 'WC', 0)
 print(tiempos) 
 
-tiempos=pruebasString(selection_sort, 'AV', 1)
+tiempos=pruebas_string(selection_sort, 'AV', 1)
 print(tiempos)
-tiempos=pruebasString(selection_sort, 'BC', 1)
+tiempos=pruebas_string(selection_sort, 'BC', 1)
 print(tiempos)
-tiempos=pruebasString(selection_sort, 'WC', 1)
+tiempos=pruebas_string(selection_sort, 'WC', 1)
 print(tiempos)       
 
 
-tiempos=pruebasString(selection_sort, 'AV', 0)
+tiempos=pruebas_string(selection_sort, 'AV', 0)
 print(tiempos)
-tiempos=pruebasString(selection_sort, 'BC', 0)
+tiempos=pruebas_string(selection_sort, 'BC', 0)
 print(tiempos)
-tiempos=pruebasString(selection_sort, 'WC', 0)
+tiempos=pruebas_string(selection_sort, 'WC', 0)
 print(tiempos)       
 
-tiempos=pruebasString(merge_sort_recursivo, 'AV', 1)
+tiempos=pruebas_string(merge_sort_recursivo, 'AV', 1)
 print(tiempos)
-tiempos=pruebasString(merge_sort_recursivo, 'BC', 1)
+tiempos=pruebas_string(merge_sort_recursivo, 'BC', 1)
 print(tiempos)
-tiempos=pruebasString(merge_sort_recursivo, 'WC', 1)
+tiempos=pruebas_string(merge_sort_recursivo, 'WC', 1)
 print(tiempos)       
 
-tiempos=pruebasString(merge_sort_recursivo, 'AV', 0)
+tiempos=pruebas_string(merge_sort_recursivo, 'AV', 0)
 print(tiempos)
-tiempos=pruebasString(merge_sort_recursivo, 'BC', 0)
+tiempos=pruebas_string(merge_sort_recursivo, 'BC', 0)
 print(tiempos)
-tiempos=pruebasString(merge_sort_recursivo, 'WC', 0)
+tiempos=pruebas_string(merge_sort_recursivo, 'WC', 0)
+print(tiempos)       
+
+
+tiempos=pruebas_string(merge_sort_iterativo, 'AV', 1)
+print(tiempos)
+tiempos=pruebas_string(merge_sort_iterativo, 'BC', 1)
+print(tiempos)
+tiempos=pruebas_string(merge_sort_iterativo, 'WC', 1)
+print(tiempos)
+
+tiempos=pruebas_string(merge_sort_iterativo, 'AV', 0)
+print(tiempos)
+tiempos=pruebas_string(merge_sort_iterativo, 'BC', 0)
+print(tiempos)
+tiempos=pruebas_string(merge_sort_iterativo, 'WC', 0)
+print(tiempos)       
+"""    
+#---------CUIDADO: ZONA DE PRUEBAS CON INT-------------#
+"""
+tiempos=pruebas_int(insertion_sort, 'AV', 1)
+print(tiempos)
+tiempos=pruebas_int(insertion_sort, 'BC', 1)
+print(tiempos)
+tiempos=pruebas_int(insertion_sort, 'WC', 1)
+print(tiempos)       
+
+
+tiempos=pruebas_int(insertion_sort, 'AV', 0)
+print(tiempos)
+tiempos=pruebas_int(insertion_sort, 'BC', 0)
+print(tiempos)
+tiempos=pruebas_int(insertion_sort, 'WC', 0)
+print(tiempos) 
+
+tiempos=pruebas_int(selection_sort, 'AV', 1)
+print(tiempos)
+tiempos=pruebas_int(selection_sort, 'BC', 1)
+print(tiempos)
+tiempos=pruebas_int(selection_sort, 'WC', 1)
+print(tiempos)       
+
+
+tiempos=pruebas_int(selection_sort, 'AV', 0)
+print(tiempos)
+tiempos=pruebas_int(selection_sort, 'BC', 0)
+print(tiempos)
+tiempos=pruebas_int(selection_sort, 'WC', 0)
+print(tiempos)       
+
+tiempos=pruebas_int(merge_sort_recursivo, 'AV', 1)
+print(tiempos)
+tiempos=pruebas_int(merge_sort_recursivo, 'BC', 1)
+print(tiempos)
+tiempos=pruebas_int(merge_sort_recursivo, 'WC', 1)
+print(tiempos)       
+
+tiempos=pruebas_int(merge_sort_recursivo, 'AV', 0)
+print(tiempos)
+tiempos=pruebas_int(merge_sort_recursivo, 'BC', 0)
+print(tiempos)
+tiempos=pruebas_int(merge_sort_recursivo, 'WC', 0)
 print(tiempos)       
 
 """
-tiempos=pruebasString(merge_sort_iterativo, 'AV', 1)
+tiempos=pruebas_int(merge_sort_iterativo, 'AV', 1)
 print(tiempos)
-tiempos=pruebasString(merge_sort_iterativo, 'BC', 1)
+tiempos=pruebas_int(merge_sort_iterativo, 'BC', 1)
 print(tiempos)
-tiempos=pruebasString(merge_sort_iterativo, 'WC', 1)
+tiempos=pruebas_int(merge_sort_iterativo, 'WC', 1)
 print(tiempos)
 
-tiempos=pruebasString(merge_sort_iterativo, 'AV', 0)
+tiempos=pruebas_int(merge_sort_iterativo, 'AV', 0)
 print(tiempos)
-tiempos=pruebasString(merge_sort_iterativo, 'BC', 0)
+tiempos=pruebas_int(merge_sort_iterativo, 'BC', 0)
 print(tiempos)
-tiempos=pruebasString(merge_sort_iterativo, 'WC', 0)
-print(tiempos)       
-       
+tiempos=pruebas_int(merge_sort_iterativo, 'WC', 0)
+print(tiempos)    
